@@ -22,3 +22,9 @@ Route::get('/', function () {
  Route::get('/portfolio', function () {
      return view('portfolio');
  });
+
+ Route::get('/advertenties', function () {
+     return view('advertenties');
+ });
+
+Route::resource('posts','PostController');

@@ -9,17 +9,15 @@
 <body>
 
     @include('inc.navbar')
-
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-lg-8">
-                @yield('content')
-            </div>
-            <div class="col-md-8 col-lg-4">
-                @include('inc.sidebar')
+        @include('inc.messages')
 
-            </div>
-        </div>
+        @yield('content')
     </div>
+
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
 </body>
 </html>
