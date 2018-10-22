@@ -11,6 +11,16 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth',['except' =>['index','show']]);
+    }
     public function index()
     {
         $posts = Post::orderBy('title','desc')->get();
@@ -75,6 +85,14 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+
+        //check for coorect user
+        if( auth()->user()->id !== $post->user_id){
+
+            return redirect('/posts')->with('error','unauthorized page');
+
+        }
+
         return view('posts.edit')->with('post',$post);
     }
 
@@ -109,7 +127,15 @@ class PostController extends Controller
     public function destroy($id)
     {
        $post = Post::find($id);
-       $post ->delete();
+
+        //check for coorect user
+        if( auth()->user()->id !== $post->user_id){
+
+            return redirect('/posts')->with('error','unauthorized page');
+
+        }
+
+        $post ->delete();
 
         return redirect('/posts')->with('succes','Post Removed');
     }
