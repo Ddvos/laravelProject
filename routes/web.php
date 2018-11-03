@@ -24,3 +24,9 @@ Route::resource('posts','PostController');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
+Route::get('/home', 'HomeController@index');
+
+
+Route::get('/admin/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
+Route::post('/admin/login','Auth\AdminLoginController@login')->name('admin.login.submit');
+Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
