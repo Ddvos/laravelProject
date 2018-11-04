@@ -23,6 +23,7 @@
 
 
 Route::resource('posts','PostController');
+Route::resource('admin/user','UserPageController');
 
 Auth::routes();
 
@@ -38,6 +39,6 @@ Route::post('/admin/login','Auth\AdminLoginController@login')->name('admin.login
 Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::get('/admin', 'AdminController@show')->name('admin.dashboard');
 Route::get('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
-Route::get('/admin/userpage', 'UserPageController@index');
+//::get('/admin/userpage', 'UserPageController@index');
 
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Hello Admin</h1>
-    <p>Op deze pagina kunt u nieuwe accounts voor klanten aanmaken. Ook kunt u hier nieuwe video's op de portfolio zetten</p>
+    <p>Op deze pagina kunt u nieuwe accounts voor klanten aanmaken. Ook kunt u hier nieuwe video's op het portfolio zetten</p>
 
 <!-- Hieronder kan je nieuwe accounts voor klanten aanmaken -->
 
@@ -82,41 +82,7 @@
         </div>
     </div>
 
-    <!-- hieronder  -->
-    <form action="/admin" method="POST" role="search">
-        {{ csrf_field() }}
-        <div class="input-group">
-            <input type="text" class="form-control" name="q"
-                   placeholder="Search users"> <span class="input-group-btn">
-            <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </span>
-        </div>
-    </form>
-
-    <div class="container">
-        @if(isset($details))
-            <p> The Search results for your query <b> {{ $query }} </b> are :</p>
-            <h2>Sample User details</h2>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($details as $user)
-                    <tr>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        @endif
-    </div>
+    <!-- hieronder is het overzicht met alle klanten  -->
 
     <h1>Klanten</h1>
  <div class="row">
@@ -127,6 +93,7 @@
              <th>Name</th>
              <th>Email</th>
              <th>Pagina</th>
+             <th>Activatie</th>
              </thead>
 
              <tbody>
@@ -137,7 +104,13 @@
                         <th>{{$user->name}}</th>
                         <th>{{$user->email}}</th>
                         <th>
-                            <a href="/admin/userpage" class="btn btn-info" role="button">Persoonlijke pagina</a>
+                            <a href="/admin/user/{{$user->id}}" class="btn btn-info" role="button">Persoonlijke pagina</a>
+                        </th>
+                        <th>
+                            <label class="bs-switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
                         </th>
                     </tr>
                 @endforeach
