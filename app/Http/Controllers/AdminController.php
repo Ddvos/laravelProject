@@ -10,7 +10,6 @@ class AdminController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -27,5 +26,17 @@ class AdminController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         return view('admin');
+    }
+
+    /**
+     * Show all de users in table
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        //
+        $users = User::all();
+        return view('admin')->with('users',$users);
     }
 }
